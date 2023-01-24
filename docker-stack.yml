@@ -109,7 +109,13 @@ services:
           - node.role==manager
       restart_policy:
         condition: on-failure
-
+  jsonExporter:
+    image: quay.io/prometheuscommunity/json-exporter
+    volumes:
+      - ./jsonExporter/config.yml:/config.yml
+    command:
+      - '--config.file=/config.yml'
+    
 #  pushgateway:
 #    image: prom/pushgateway
 #    deploy:
